@@ -84,18 +84,13 @@ class notice extends StatelessWidget {
             Flexible(
               flex: 4,
               child: StreamBuilder<QuerySnapshot>(
-                  stream: profile_Post != "সদস্য"
-                      ? FirebaseFirestore.instance
-                          .collection("notice")
-                          .orderBy('date', descending: true)
-                          .limit(lmt)
-                          .snapshots()
-                      : FirebaseFirestore.instance
-                          .collection("notice")
-                          .where("to", isEqualTo: "member")
-                          .orderBy('date', descending: true)
-                          .limit(lmt)
-                          .snapshots(),
+                  stream: FirebaseFirestore.instance
+                      .collection("notice")
+                      // .orderBy('date', descending: true)
+
+                      .orderBy('date', descending: true)
+                      .limit(lmt)
+                      .snapshots(),
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.hasError) {}
